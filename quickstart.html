@@ -101,7 +101,7 @@
       function getChannel() {
         gapi.client.youtube.channels.list({
           'part': 'snippet,contentDetails,statistics',
-          'forUsername': 'GoogleDevelopers'
+          'forUsername': 'AbdallahSmash026'
         }).then(function(response) {
           var channel = response.result.items[0];
           appendPre('This channel\'s ID is ' + channel.id + '. ' +
