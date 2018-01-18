@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>YouTube Data API Quickstart</title>
-    <meta charset='utf-8' />
-  </head>
-  <body>
-    <p>YouTube Data API Quickstart</p>
+<head>
+  <title>YouTube Data API Quickstart</title>
+  <meta charset='utf-8' />
+  <!-- jQuery -->
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+  <p>YouTube Data API Quickstart</p>
 
-    <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize-button" style="display: none;">Authorize</button>
-    <button id="signout-button" style="display: none;">Sign Out</button>
+  <!--Add buttons to initiate auth sequence and sign out-->
+  <button id="authorize-button" style="display: none;">Authorize</button>
+  <button id="signout-button" style="display: none;">Sign Out</button>
+  <p>    <a href="">The thumbnail link will appear here.</a></p>
+  <pre id="content"></pre>
 
-    <pre id="content"></pre>
-
-    <script type="text/javascript">
+  <script type="text/javascript">
       // Client ID and API key from the Developer Console
       var CLIENT_ID = '828129583114-7pm1omp9i2uakgvmps7s51gih124dtmc.apps.googleusercontent.com';
 
@@ -30,7 +35,7 @@
       /**
        *  On load, called to load the auth2 library and API client library.
        */
-      function handleClientLoad() {
+       function handleClientLoad() {
         gapi.load('client:auth2', initClient);
       }
 
@@ -38,7 +43,7 @@
        *  Initializes the API client library and sets up sign-in state
        *  listeners.
        */
-      function initClient() {
+       function initClient() {
         gapi.client.init({
           discoveryDocs: DISCOVERY_DOCS,
           clientId: CLIENT_ID,
@@ -58,7 +63,7 @@
        *  Called when the signed in status changes, to update the UI
        *  appropriately. After a sign-in, the API is called.
        */
-      function updateSigninStatus(isSignedIn) {
+       function updateSigninStatus(isSignedIn) {
         if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
@@ -72,14 +77,14 @@
       /**
        *  Sign in the user upon button click.
        */
-      function handleAuthClick(event) {
+       function handleAuthClick(event) {
         gapi.auth2.getAuthInstance().signIn();
       }
 
       /**
        *  Sign out the user upon button click.
        */
-      function handleSignoutClick(event) {
+       function handleSignoutClick(event) {
         gapi.auth2.getAuthInstance().signOut();
       }
 
@@ -89,7 +94,7 @@
        *
        * @param {string} message Text to be placed in pre element.
        */
-      function appendPre(message) {
+       function appendPre(message) {
         var pre = document.getElementById('content');
         var textContent = document.createTextNode(message + '\n');
         pre.appendChild(textContent);
@@ -98,25 +103,29 @@
       /**
        * Print files.
        */
-      function getChannel() {
+       function getChannel() {
         gapi.client.youtube.channels.list({
           'part': 'snippet,contentDetails,statistics',
-          'forUsername': 'AbdallahSmash026'
+          //id of my channel
+          'id' : 'UCt9nfhHx6ltN-dM_c9PZEBQ'
+
         }).then(function(response) {
           var channel = response.result.items[0];
           console.log(response);
           console.log("image de la chaine : " + channel.snippet.thumbnails.default.url)
           appendPre('This channel\'s ID is ' + channel.id + '. ' +
-                    'Its title is \'' + channel.snippet.title + ', ' +
-                    'and it has ' + channel.statistics.viewCount + ' views.');
+            'Its title is \'' + channel.snippet.title + ', ' +
+            'and it has ' + channel.statistics.viewCount + ' views.');
+          $("a").replaceWith('<a ' +  'href= '+ channel.snippet.thumbnails.default.url + ">"+ 'Img ready !'+ "</a>")
+
         });
       }
-
     </script>
 
     <script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
-  </body>
+    onload="this.onload=function(){};handleClientLoad()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  </script>
+
+</body>
 </html>
