@@ -31,7 +31,8 @@
 
       var authorizeButton = document.getElementById('authorize-button');
       var signoutButton = document.getElementById('signout-button');
-
+      //zelda breath of the wild playlist
+      var playlist_id = 'PLkR3RWLcKJUQas7CJWD1jQXpRmDbPRVE0'
       /**
        *  On load, called to load the auth2 library and API client library.
        */
@@ -119,6 +120,22 @@
           $("a").replaceWith('<a ' +  'href= '+ channel.snippet.thumbnails.default.url + ">"+ 'Img ready !'+ "</a>")
 
         });
+      }
+
+      function getPlaylist() {
+//your code here to get info about a playlist
+console.log('YAHAHAyy !')
+        gapi.client.youtube.channels.list({
+          'part': '',
+
+
+        }).then(function(response) {
+          console.log(response);
+          appendPre('');
+
+
+        });
+
       }
     </script>
 
