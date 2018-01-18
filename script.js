@@ -1,25 +1,24 @@
 //La 1ère requete se fait lors du chargement de la page.
 // Elle obtient le token qui permettra de faire la requete qui suit ( en cliquant le button.)
 
-
-
-
-
+//Paramètres de la requete
 let api_key = "key=AIzaSyChnjvA4bfCdWECZuaYcw38sF2pWHcrhdM" ;
 var base = "https://www.googleapis.com/youtube/v3/search?";
 var part = '&part=snippet';
 //mot de recherche
-var q = '&q=norman';
-var maxresults= "&maxresults=20"
+var q = '&q=bitcoin';
+var maxresults= "&maxresults=28"
 
 //Création de l'URL
 var url = base + api_key + q + part ;
+//next page token
 var token;
 
 //1ère requête 
 $.get( url, function( data ) {
 	console.log('request launched with this url : '+ url);
-	$("p").append('request launched with this url : <a href='+url+'>'+ url+'</a>'+"<br>");
+	$("p").append('request launched with this url : <a href='+url+'>'+ 
+		url+'</a>'+"<br>");
 	console.log(data);
 
 	//Obtenir token pour pouvoir charger la suite 
