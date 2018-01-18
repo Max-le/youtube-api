@@ -35,6 +35,8 @@ $.get( url, function( data ) {
 });
 //Requete délcenchée par le button
 $("button").click(function(){
+
+	if (token != undefined) {
 //get next page with token
 url = base + api_key +"&pageToken="+token+ part+id ;
 console.log('new url :'+url)
@@ -52,6 +54,11 @@ $.get( url, function( data ) {
 
 	}
 });
+} else {
+	//sinon, executer ce code
+	console.log('No token found : must be the last page.');
 
+
+}
 
 });
