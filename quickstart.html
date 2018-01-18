@@ -104,6 +104,8 @@
           'forUsername': 'AbdallahSmash026'
         }).then(function(response) {
           var channel = response.result.items[0];
+          console.log(response);
+          console.log("image de la chaine : " + channel.snippet.thumbnails.default.url)
           appendPre('This channel\'s ID is ' + channel.id + '. ' +
                     'Its title is \'' + channel.snippet.title + ', ' +
                     'and it has ' + channel.statistics.viewCount + ' views.');
