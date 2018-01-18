@@ -1,6 +1,7 @@
-h1 {
-	font-size: : 10px ;
-}
 body {
 	background-color: orange;
+}
+.rightdiv {
+	background-color: red;
+	float: right;
 }
